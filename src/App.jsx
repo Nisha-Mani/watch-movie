@@ -2,12 +2,19 @@ import React from 'react'
 
 export const App = () => {
   return (
-    <div>
-      <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+    <main>
+      <div className="pattern"/>
 
-    </div>
+      <div className="wrapper">
+        <header>
+          <img src="./hero.png" alt="Hero Banner" />
+          <h1>Find <span className="text-gradient"> Movies </span> you'll enjoy without the hassle</h1>
+        </header>
+        <p>Search</p>
+      </div>
+
+
+    </main>
   )
 }
 
