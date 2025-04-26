@@ -18,11 +18,14 @@ const API_OPTIONS = {
 
 export const App = () => {
   const [searchTerm,setSearchTerm] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [movieList ,setMovieList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [debouncedSearchTerm,setDebouncedSearchTerm] = useState('');
+
+  const [movieList ,setMovieList] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+ 
   const [trendingMovies, setTrendingMovies] = useState([]);
+  
   //debounce the search term befoe making the API call
   // this will delay the API call by 500ms after the user stops typing
   useDebounce(()  => setDebouncedSearchTerm(searchTerm), 500, [searchTerm]);
