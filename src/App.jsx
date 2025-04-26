@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Search from './components/search';
 import Spinner from './components/Spinner';
 import MovieCard from './components/MovieCard';
+import { useDebounce } from 'react-use';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -18,6 +19,12 @@ export const App = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [movieList ,setMovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [debouncedSearchTerm,setDebouncedSearchTerm] = useState('');
+
+  //debounce the search term befoe making the API call
+  // this will delay the API call by 500ms after the user stops typing
+  useDebounce(()  => setDebouncedSearchTerm(searchTerm), 500, [searchTerm]);
+
 
   const fetchMovies = async(query = '')=>{
     setIsLoading(true);
@@ -53,8 +60,8 @@ export const App = () => {
   }
 
   useEffect(() => {
-    fetchMovies(searchTerm);
-  },[searchTerm]);
+    fetchMovies(debouncedSearchTerm);
+  },[debouncedSearchTerm]);
 
 
   return (
